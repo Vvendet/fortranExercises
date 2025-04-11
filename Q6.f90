@@ -34,12 +34,13 @@ program Q6 !multiplicacao de matrizes quadradas
                 soma = soma+A(i,j)*B(j,k)
 
             end do
-            flop = flop + 1
+            flop = flop + 1 !Contagem de quantos flops são necessários
             C(i,k) = soma
         end do
 
     end do
 
+    !!! ESCREVER AS MATRIZES NA TELA
     do i=1,N
         write(*,*) A(i,:)
     end do
@@ -53,8 +54,8 @@ program Q6 !multiplicacao de matrizes quadradas
     do i=1,N
         write(*,*) C(i,:)
     end do
-
-    write(*,*) flop, N
+    !!!!!!
+    write(*,*) flop, N !imprimir os flops e N
 
     deallocate(A)
     deallocate(B)

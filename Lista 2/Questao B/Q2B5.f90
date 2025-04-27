@@ -16,6 +16,9 @@ program QuestaoB
     x(1)=1.7
     x(2)=h(x(1))
 
+
+
+
     do i =3,100 !iteracao no metodo da secante
         x(i)=g(x(i-1),x(i-2))
         if (abs(x(i)-x(i-1))<0.000001) then
@@ -23,6 +26,17 @@ program QuestaoB
             exit
         end if
     end do
+
+    x(1)=14
+
+    do i =2,100 !iteracao no metodo da newton raphson
+        x(i)=f(x(i-1))
+        if (abs(x(i)-x(i-1))<0.000001) then
+            write(*,*)"Iteracoes para convergir no metodo da newton raphson:",i, x(i)
+            exit
+        end if
+    end do
+
 
     do i =1,100 !iteracao no metodo da bisssecao
 
@@ -44,14 +58,13 @@ program QuestaoB
 
     contains
 
-    function f(x) !funcao metodo newton raphson
+    function f(x)
         implicit none
         double precision::f,x
         real(8), parameter :: pi=3.14159274D0
 
-        f = (log10(x)+3*cube_root(x)-pi)-(log10(x)+3*cube_root(x)-pi)/((cube_root(x*x)+log(10.d0)*x)/(log(10.d0)*cube_root(x*x*x*x*x)))
+        f=log10(x)+ 3*cube_root(x)-pi-(log10(x)+ 3*cube_root(x)-pi)/(log10(exp(1.0)/x+1/cube_root(x*x)))
 
-        return
     end function
 
     function g(x,y) !funcao metodo da secante
